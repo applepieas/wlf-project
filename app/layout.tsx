@@ -1,6 +1,40 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import CardNav from "@/components/CardNav";
+
+const ttCommons = localFont({
+  src: [
+    {
+      path: './fonts/TT-Commons-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/TT-Commons-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  variable: "--font-tt-commons",
+})
+
+const grift = localFont({
+  src: [
+    {
+      path: "./fonts/grift-regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/grift-medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-grift",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +59,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${grift.variable} ${ttCommons.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CardNav />
         {children}
       </body>
     </html>
