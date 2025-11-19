@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import '@/components/SpinningCards.css'
+import '@/components/CardNav.css'
 import CardNav from "@/components/CardNav";
+import { items } from "@/components/CardNavItems";
 
 const ttCommons = localFont({
   src: [
@@ -61,7 +64,10 @@ export default function RootLayout({
       <body
         className={`${grift.variable} ${ttCommons.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CardNav />
+        <CardNav
+          logo="/slice1.svg"
+          items={items}
+        />
         {children}
       </body>
     </html>

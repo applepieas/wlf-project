@@ -65,6 +65,7 @@
   .home-hero__description-p {
     font-size: 1.375em;
     line-height: 1.2;
+    max-width: 42ch;
   }
 
   .container {
@@ -162,4 +163,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.gray-bg-highlight {
+  background: #ececec;
+  padding: 0.15em 0.45em;
+  border-radius: 5px;
+  margin: 0 0.1em;
+  color: inherit;
+  font-weight: 500;
 }

@@ -1,0 +1,43 @@
+.carausel {
+  margin: 100px auto;
+  width: 100%;
+  border: 1px solid red;
+  display: flex;
+  overflow-x: auto;
+  position: absolute;
+  bottom: -100px;
+
+}
+
+.carausel::-webkit-scrollbar {
+  display: none;
+}
+
+.group {
+  display: flex;
+  gap: 60px;
+  animation: spin 20s linear infinite;
+  margin-left: 60px;
+}
+
+.card {
+  width: max-content;
+  padding: 8px;
+  margin: 10px;
+  background-color: #211d1d;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+@keyframes spin {
+  from {
+    translate: 0;
+  }
+
+  to {
+    translate: -100%;
+  }
+}

@@ -1,0 +1,11 @@
+.highlight {
+  background: #eaeaea;
+  /* light gray */
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  margin: 0 0.05em;
+  display: inline-block;
+  color: inherit;
+  /* keep original color */
+
+}

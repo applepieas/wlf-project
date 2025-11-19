@@ -4,9 +4,10 @@
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 800px;
+  max-width: 500px;
   z-index: 99;
   box-sizing: border-box;
+  will-change: max-width;
 }
 
 .card-nav {
@@ -152,6 +153,30 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  position: relative;
+}
+
+.nav-card-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-card-link:hover::after {
+  width: 100%;
+}
+
+.nav-card-link-icon {
+  transition: transform 0.3s ease;
+}
+
+.nav-card-link:hover .nav-card-link-icon {
+  transform: rotate(45deg);
 }
 
 .nav-card-link:hover {

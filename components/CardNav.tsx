@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import React, { useLayoutEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 // use your own icon import if react-icons is not available
 import { GoArrowUpRight } from 'react-icons/go';
-import './CardNav.css';
 
 type CardNavLink = {
   label: string;
@@ -66,6 +67,7 @@ const CardNav: React.FC<CardNavProps> = ({
         contentEl.style.position = 'static';
         contentEl.style.height = 'auto';
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         contentEl.offsetHeight;
 
         const topBar = 60;
@@ -85,19 +87,29 @@ const CardNav: React.FC<CardNavProps> = ({
 
   const createTimeline = () => {
     const navEl = navRef.current;
-    if (!navEl) return null;
+    const containerEl = navEl?.parentElement;
+    if (!navEl || !containerEl) return null;
 
     gsap.set(navEl, { height: 60, overflow: 'hidden' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
 
+    // First animate the container width
+    tl.to(containerEl, {
+      maxWidth: 800,
+      duration: 0.3,
+      ease
+    });
+
+    // Then animate the height
     tl.to(navEl, {
       height: calculateHeight,
       duration: 0.4,
       ease
-    });
+    }, '-=0.1');
 
+    // Finally animate the cards
     tl.to(cardsRef.current, { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 }, '-=0.1');
 
     return tl;
@@ -159,7 +171,7 @@ const CardNav: React.FC<CardNavProps> = ({
   };
 
   return (
-    <div className={`card-nav-container ${className}`}>
+    <div className={`card-nav-container ${isExpanded ? 'open' : ''} ${className}`}>
       <nav ref={navRef} className={`card-nav ${isExpanded ? 'open' : ''}`} style={{ backgroundColor: baseColor }}>
         <div className="card-nav-top">
           <div
@@ -175,7 +187,7 @@ const CardNav: React.FC<CardNavProps> = ({
           </div>
 
           <div className="logo-container">
-            <img src={logo} alt={logoAlt} className="logo" />
+            <Image src={logo} alt={logoAlt} className="logo" width={40} height={40} />
           </div>
 
           <button
