@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import '@/components/SpinningCards.css'
-import '@/components/CardNav.css'
-import CardNav from "@/components/CardNav";
-import { items } from "@/components/CardNavItems";
+import '@/components/hero/SpinningCards.css'
+import '@/components/hero/CardNav.css'
+import CardNav from "@/components/hero/CardNav";
+import { items } from "@/components/hero/CardNavItems";
 
 const ttCommons = localFont({
   src: [

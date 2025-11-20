@@ -1,7 +1,6 @@
 .carausel {
   margin: 100px auto;
   width: 100%;
-  border: 1px solid red;
   display: flex;
   overflow-x: auto;
   position: absolute;

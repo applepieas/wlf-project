@@ -1,4 +1,5 @@
-import HeroSection from '@/components/HeroSection'
+import HeroSection from '@/components/hero/HeroSection'
+import AboutSection from '@/components/about/AboutSection'
 import React from 'react'
 
 
@@ -7,6 +8,7 @@ const page = () => {
 
     <div className='h-[200vh]'>
       <HeroSection />
+      <AboutSection />
     </div>
   )
 }
