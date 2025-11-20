@@ -6,6 +6,7 @@ import PricingSection from '@/components/pricing/PricingSection'
 import Footer from '@/components/footer/Footer'
 import Testimonials from '@/components/testimonials/testimonials'
 import Made from '@/components/made/Made'
+import Shape from '@/components/shape/shape'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Testimonials />
       <Made />
       <PricingSection />
+      <Shape />
       <Footer />
     </div>
   )
