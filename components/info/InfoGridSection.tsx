@@ -3,7 +3,7 @@ import React from 'react'
 const InfoGridSection = () => {
   return (
     <div className='h-screen w-full flex items-center justify-center relative bg-[#f4f4f4]'>
-      <div className="w-full px-5 h-full grid grid-cols-5 gap-10 py-20">
+      <div className="w-full px-5 h-[90%] grid grid-cols-5 gap-10 py-20 mx-40">
 
         {/* Left Column - 1fr */}
         <div className="col-span-2 flex flex-col h-full relative pt-8 my-5">
