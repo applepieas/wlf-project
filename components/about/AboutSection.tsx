@@ -2,7 +2,7 @@ import React from 'react'
 
 const AboutSection = () => {
   return (
-    <div className='flex justify-center items-center relative h-screen'>
+    <div className='flex justify-center items-center relative h-[200vh] pt-20'>
       <div className='home-hero__bg'>
         <div className="home-hero__bg-line"></div>
         <div className="home-hero__bg-line-horizontal"></div>
@@ -15,7 +15,8 @@ const AboutSection = () => {
           </div>
 
           {/* Reel section */}
-          <div className="mt-16 flex items-center justify-between text-[5rem] font-semibold text-neutral-300/60 tracking-tight">
+          <div className="mt-16 relative flex items-center justify-between text-[5rem] font-semibold text-[#e0e0e0] tracking-tight">
+
             <span className="uppercase font-grift">Play</span>
 
             {/* Reel placeholder card */}

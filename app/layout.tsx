@@ -6,6 +6,13 @@ import '@/components/hero/SpinningCards.css'
 import '@/components/hero/CardNav.css'
 import CardNav from "@/components/hero/CardNav";
 import { items } from "@/components/hero/CardNavItems";
+import { Roboto_Mono } from "next/font/google";
+
+const robotoMono = Roboto_Mono({
+  weight: ['200', '300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: "--font-robotomono",
+});
 
 const ttCommons = localFont({
   src: [
@@ -62,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${grift.variable} ${ttCommons.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${grift.variable} ${ttCommons.variable} ${robotoMono.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CardNav
           logo="/slice1.svg"

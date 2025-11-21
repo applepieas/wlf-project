@@ -33,12 +33,12 @@ export interface CardNavProps {
 }
 
 const CardNav: React.FC<CardNavProps> = ({
-  logo,
+  logo = '/logo-incolor.svg',
   logoAlt = 'Logo',
   items,
   className = '',
   ease = 'power3.out',
-  baseColor = '#fff',
+  baseColor = '#211d1d',
   menuColor,
   buttonBgColor,
   buttonTextColor
@@ -97,7 +97,7 @@ const CardNav: React.FC<CardNavProps> = ({
 
     // First animate the container width
     tl.to(containerEl, {
-      maxWidth: 800,
+      maxWidth: '100%',
       duration: 0.3,
       ease
     });
@@ -180,14 +180,14 @@ const CardNav: React.FC<CardNavProps> = ({
             role="button"
             aria-label={isExpanded ? 'Close menu' : 'Open menu'}
             tabIndex={0}
-            style={{ color: menuColor || '#000' }}
+            style={{ color: menuColor || '#f4f4f4' }}
           >
             <div className="hamburger-line" />
             <div className="hamburger-line" />
           </div>
 
           <div className="logo-container">
-            <Image src={logo} alt={logoAlt} className="logo" width={40} height={40} />
+            <Image src='/logo-incolor.svg' alt={logoAlt} className="logo" width={80} height={80} />
           </div>
 
           <button
@@ -195,7 +195,7 @@ const CardNav: React.FC<CardNavProps> = ({
             className="card-nav-cta-button"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
-            Get Started
+            Contact Us
           </button>
         </div>
 
@@ -220,6 +220,17 @@ const CardNav: React.FC<CardNavProps> = ({
           ))}
         </div>
       </nav>
+
+      <div className={`card-nav-marquee ${isExpanded ? 'hidden' : ''}`} aria-hidden="true">
+        <div className="card-nav-marquee-track">
+          {Array.from({ length: 4 }).map((_, idx) => (
+            <span key={idx} className="font-robotomono">
+              Creative studio insights • Premium launches • Growth stories •
+            </span>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };

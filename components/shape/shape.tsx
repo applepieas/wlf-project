@@ -2,7 +2,7 @@ import React from 'react'
 
 const Shape = () => {
   return (
-    <div className='h-[80vh] w-full flex items-center justify-center relative bg-[#f4f4f4] font-grift'>
+    <div className='h-[80vh] w-full flex items-center justify-center relative bg-[#f4f4f4] font-grift pt-6'>
       <div className="w-full px-5 h-[715px] grid grid-cols-2 gap-10 mx-6 items-center">
 
         {/* Left Column - 1fr - Blank Pill */}

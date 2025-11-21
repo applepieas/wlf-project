@@ -4,7 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 500px;
+  max-width: 720px;
   z-index: 99;
   box-sizing: border-box;
   will-change: max-width;
@@ -14,7 +14,7 @@
   display: block;
   height: 60px;
   padding: 0;
-  background-color: white;
+  background-color: #211d1d;
   border: 0.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -83,8 +83,8 @@
 }
 
 .card-nav-cta-button {
-  background-color: #111;
-  color: white;
+  background-color: #f4f4f4;
+  color: #211d1d;
   border: none;
   border-radius: calc(0.75rem - 0.35rem);
   padding: 0 1rem;
@@ -96,7 +96,7 @@
 }
 
 .card-nav-cta-button:hover {
-  background-color: #333;
+  background-color: #e0e0e0;
 }
 
 .card-nav-content {
@@ -181,6 +181,52 @@
 
 .nav-card-link:hover {
   opacity: 0.75;
+}
+
+.card-nav-marquee {
+  width: 100%;
+  height: 35px;
+  margin-top: 0.75rem;
+  background-color: #a1ff62;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: #211d1d;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: var(--font-robotomono), monospace;
+  font-weight: 400;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.card-nav-marquee.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-nav-marquee-track {
+  display: flex;
+  gap: 2rem;
+  white-space: nowrap;
+  animation: card-nav-marquee-slide 18s linear infinite;
+}
+
+.card-nav-marquee-track span {
+  display: inline-block;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+@keyframes card-nav-marquee-slide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (max-width: 768px) {
