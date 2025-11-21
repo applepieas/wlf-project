@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 // use your own icon import if react-icons is not available
@@ -48,6 +48,37 @@ const CardNav: React.FC<CardNavProps> = ({
   const navRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    // Initial check
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isExpanded) {
+      gsap.to(containerRef.current, { scale: 1, xPercent: -50, duration: 0.3, ease: 'power2.out' });
+      gsap.to(marqueeRef.current, { y: -50, opacity: 0, duration: 0.3, ease: 'power2.out' });
+      return;
+    }
+
+    if (isScrolled) {
+      gsap.to(containerRef.current, { scale: 0.9, xPercent: -50, duration: 0.3, ease: 'power2.out' });
+      gsap.to(marqueeRef.current, { y: -50, opacity: 0, duration: 0.3, ease: 'power2.out' });
+    } else {
+      gsap.to(containerRef.current, { scale: 1, xPercent: -50, duration: 0.3, ease: 'power2.out' });
+      gsap.to(marqueeRef.current, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+    }
+  }, [isScrolled, isExpanded]);
 
   const calculateHeight = () => {
     const navEl = navRef.current;
@@ -155,10 +186,25 @@ const CardNav: React.FC<CardNavProps> = ({
   const toggleMenu = () => {
     const tl = tlRef.current;
     if (!tl) return;
+
     if (!isExpanded) {
       setIsHamburgerOpen(true);
-      setIsExpanded(true);
-      tl.play(0);
+
+      if (isScrolled) {
+        setIsExpanded(true);
+        tl.play(0);
+      } else {
+        gsap.to(marqueeRef.current, {
+          y: -50,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+          onComplete: () => {
+            setIsExpanded(true);
+            tl.play(0);
+          }
+        });
+      }
     } else {
       setIsHamburgerOpen(false);
       tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
@@ -171,7 +217,7 @@ const CardNav: React.FC<CardNavProps> = ({
   };
 
   return (
-    <div className={`card-nav-container ${isExpanded ? 'open' : ''} ${className}`}>
+    <div ref={containerRef} className={`card-nav-container ${isExpanded ? 'open' : ''} ${className}`}>
       <nav ref={navRef} className={`card-nav ${isExpanded ? 'open' : ''}`} style={{ backgroundColor: baseColor }}>
         <div className="card-nav-top">
           <div
@@ -221,7 +267,8 @@ const CardNav: React.FC<CardNavProps> = ({
         </div>
       </nav>
 
-      <div className={`card-nav-marquee ${isExpanded ? 'hidden' : ''}`} aria-hidden="true">
+      {/* Marquee */}
+      <div ref={marqueeRef} className="card-nav-marquee" aria-hidden="true">
         <div className="card-nav-marquee-track">
           {Array.from({ length: 4 }).map((_, idx) => (
             <span key={idx} className="font-robotomono">

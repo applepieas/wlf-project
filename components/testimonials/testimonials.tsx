@@ -42,7 +42,7 @@ const Testimonials = () => {
   }
 
   return (
-    <div className='flex justify-center items-center relative h-[80vh] w-full overflow-hidden bg-[#f4f4f4]'>
+    <div className='flex justify-center items-center relative h-[100vh] w-full overflow-hidden bg-[#f4f4f4] '>
       {/* Background - matching AboutSection */}
       <div className='home-hero__bg'>
         <div className="home-hero__bg-line"></div>
